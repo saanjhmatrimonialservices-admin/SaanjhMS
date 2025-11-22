@@ -1,6 +1,15 @@
+"use client";
+import { usePathname } from "next/navigation";
+
 export default function Footer(): React.ReactElement {
+  const pathname = usePathname();
+  const hideFooter = pathname.includes("/dashboard");
+
   return (
-    <footer className="bg-primary text-whiteshade flex flex-col justify-between px-6 py-8 h-[100vh] md:h-[40vh]">
+    <footer
+      className={`bg-primary text-whiteshade flex flex-col justify-between px-6 py-8 h-[100vh] md:h-[40vh] ${
+        hideFooter ? "hidden" : ""
+      }`}>
       <div className="flex flex-row gap-6 mx-auto justify-between">
         <p className="text-xl italic w-1/3">
           We’re Here to Help Have questions? Our team is ready to assist you in

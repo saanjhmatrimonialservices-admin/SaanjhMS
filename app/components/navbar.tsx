@@ -12,7 +12,7 @@ export default function Navbar(): React.ReactElement {
 
   const pathname = usePathname() ?? "";
 
-  const specificRoutes = ["/dashboard"];
+  const specificRoutes = ["/dashboard", "/view-profile"];
 
   const hideNavbar = specificRoutes.some((route) => pathname.includes(route));
 
