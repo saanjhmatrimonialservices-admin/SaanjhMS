@@ -20,6 +20,7 @@ export async function GET(req: NextRequest) {
     const search = searchParams.get("search") || "";
 
     // Build where clause for filtering
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const where: any = {};
     if (search) {
       where.OR = [
@@ -36,6 +37,7 @@ export async function GET(req: NextRequest) {
     const skip = (page - 1) * pageSize;
 
     // Build orderBy clause
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let orderBy: any = {};
     if (sortBy === "name") {
       orderBy = { user: { name: sortOrder } };
