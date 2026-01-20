@@ -3,10 +3,14 @@
 import React, { useState } from "react";
 import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import MaritalProfilePDF from "./client-profile";
-import { Client } from "@prisma/client";
+import { Client, Sibling } from "@prisma/client";
+
+type ClientWithSiblings = Client & {
+  siblings?: Sibling[];
+};
 
 interface ProfilePDFViewerProps {
-  client: Client; // Use your Client type from Prisma
+  client: ClientWithSiblings; // Use your Client type from Prisma with siblings
 }
 
 const ProfilePDFViewer: React.FC<ProfilePDFViewerProps> = ({ client }) => {

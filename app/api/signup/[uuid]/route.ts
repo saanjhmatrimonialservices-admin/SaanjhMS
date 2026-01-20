@@ -50,7 +50,7 @@ export async function POST(
     });
 
     // Create client profile
-    await prisma.client.create({
+    const client = await prisma.client.create({
       data: {
         userId: uuid,
         dateOfBirth: new Date(body.dateOfBirth),
@@ -101,6 +101,26 @@ export async function POST(
         numberOfBikes: body.numberOfBikes ? parseInt(body.numberOfBikes) : 0,
       },
     });
+
+    // Create siblings if provided
+    if (body.siblings && Array.isArray(body.siblings) && body.siblings.length > 0) {
+      await prisma.sibling.createMany({
+        data: body.siblings.map((sibling: {
+          name: string;
+          age: string;
+          gender: string;
+          profession?: string;
+          maritalStatus?: string;
+        }) => ({
+          clientId: client.id,
+          name: sibling.name,
+          age: parseInt(sibling.age) || 0,
+          gender: sibling.gender,
+          profession: sibling.profession || null,
+          maritalStatus: sibling.maritalStatus || null,
+        })),
+      });
+    }
 
     // Set auth cookie for automatic login
     const response = NextResponse.json({

@@ -8,10 +8,13 @@ export async function GET(
   try {
     const { id } = await params;
 
-    // Fetch client data from database
+    // Fetch client data from database including siblings
     const client = await prisma.client.findUnique({
       where: {
         id: id,
+      },
+      include: {
+        siblings: true,
       },
     });
 

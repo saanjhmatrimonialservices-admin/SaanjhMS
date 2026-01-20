@@ -1,0 +1,5 @@
+{
+  // Ensure the Prisma VS Code/Cursor extension uses the project's locally installed Prisma CLI.
+  // This prevents schema diagnostics from being produced by a mismatched global/bundled Prisma version.
+  "prisma.prismaPath": "./node_modules/.bin/prisma"
+}

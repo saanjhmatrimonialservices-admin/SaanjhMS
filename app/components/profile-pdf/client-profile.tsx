@@ -14,6 +14,15 @@ import {
 //   src: 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2',
 // });
 
+interface SiblingProfile {
+  id: string;
+  name: string;
+  age: number;
+  gender: string;
+  profession: string | null;
+  maritalStatus: string | null;
+}
+
 interface ClientProfile {
   id: string;
   imageUrl: string | null;
@@ -61,6 +70,7 @@ interface ClientProfile {
   country: string | null;
   numberOfCars: number | null;
   numberOfBikes: number | null;
+  siblings?: SiblingProfile[];
 }
 
 const styles = StyleSheet.create({
@@ -172,6 +182,27 @@ const styles = StyleSheet.create({
     borderLeft: "3px solid #ffc107",
     marginBottom: 12,
   },
+  siblingCard: {
+    backgroundColor: "#f5f5f5",
+    padding: 10,
+    borderRadius: 4,
+    marginBottom: 8,
+    borderLeft: "3px solid #8b0000",
+  },
+  siblingName: {
+    fontSize: 11,
+    fontWeight: "bold",
+    color: "#1c2526",
+    marginBottom: 4,
+  },
+  siblingsGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 10,
+  },
+  siblingItem: {
+    width: "48%",
+  },
 });
 
 const formatDate = (date: Date): string => {
@@ -199,6 +230,12 @@ const calculateAge = (dob: Date): number => {
 interface MaritalProfilePDFProps {
   client: ClientProfile;
 }
+
+const formatMaritalStatus = (status: string | null): string => {
+  if (!status) return "N/A";
+  if (status === "NeverMarried") return "Never Married";
+  return status;
+};
 
 const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
   const age = calculateAge(client.dateOfBirth);
@@ -231,7 +268,7 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Gender:</Text>
-                <Text style={styles.value}>{client.gender}</Text>
+                <Text style={styles.value}>{client.gender || "N/A"}</Text>
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Height:</Text>
@@ -239,11 +276,11 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Marital Status:</Text>
-                <Text style={styles.value}>{client.maritalStatus}</Text>
+                <Text style={styles.value}>{formatMaritalStatus(client.maritalStatus)}</Text>
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Religion:</Text>
-                <Text style={styles.value}>{client.religion}</Text>
+                <Text style={styles.value}>{client.religion || "N/A"}</Text>
               </View>
             </View>
           </View>
@@ -260,42 +297,34 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
                   {formatDate(client.dateOfBirth)}
                 </Text>
               </View>
-              {client.timeOfBirth && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Time of Birth:</Text>
-                  <Text style={styles.value}>{client.timeOfBirth}</Text>
-                </View>
-              )}
-              {client.placeOfBirth && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Place of Birth:</Text>
-                  <Text style={styles.value}>{client.placeOfBirth}</Text>
-                </View>
-              )}
-              {client.rashi && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Rashi:</Text>
-                  <Text style={styles.value}>{client.rashi}</Text>
-                </View>
-              )}
-              {client.complexion && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Complexion:</Text>
-                  <Text style={styles.value}>{client.complexion}</Text>
-                </View>
-              )}
-              {client.weight && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Weight:</Text>
-                  <Text style={styles.value}>{client.weight} kg</Text>
-                </View>
-              )}
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Time of Birth:</Text>
+                <Text style={styles.value}>{client.timeOfBirth || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Place of Birth:</Text>
+                <Text style={styles.value}>{client.placeOfBirth || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Rashi:</Text>
+                <Text style={styles.value}>{client.rashi || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Complexion:</Text>
+                <Text style={styles.value}>{client.complexion || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Weight:</Text>
+                <Text style={styles.value}>
+                  {client.weight ? `${client.weight} kg` : "N/A"}
+                </Text>
+              </View>
             </View>
 
             <View style={styles.column}>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Diet:</Text>
-                <Text style={styles.value}>{client.diet}</Text>
+                <Text style={styles.value}>{client.diet || "N/A"}</Text>
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Drink:</Text>
@@ -305,24 +334,22 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
                 <Text style={styles.label}>Smoke:</Text>
                 <Text style={styles.value}>{client.smoke ? "Yes" : "No"}</Text>
               </View>
-              {client.motherTongue && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Mother Tongue:</Text>
-                  <Text style={styles.value}>{client.motherTongue}</Text>
-                </View>
-              )}
-              {client.caste && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Caste:</Text>
-                  <Text style={styles.value}>{client.caste}</Text>
-                </View>
-              )}
-              {client.gotra && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Gotra:</Text>
-                  <Text style={styles.value}>{client.gotra}</Text>
-                </View>
-              )}
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Mother Tongue:</Text>
+                <Text style={styles.value}>{client.motherTongue || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Caste:</Text>
+                <Text style={styles.value}>{client.caste || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Sub-Caste:</Text>
+                <Text style={styles.value}>{client.subCaste || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Gotra:</Text>
+                <Text style={styles.value}>{client.gotra || "N/A"}</Text>
+              </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Manglik:</Text>
                 <Text style={styles.value}>
@@ -332,23 +359,23 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
             </View>
           </View>
 
-          {client.hobbies && client.hobbies.length > 0 && (
-            <>
-              <View style={{ marginTop: 8 }}>
-                <Text
-                  style={{ fontSize: 10, fontWeight: "bold", marginBottom: 4 }}>
-                  Hobbies & Interests:
-                </Text>
-                <View style={styles.hobbiesContainer}>
-                  {client.hobbies.map((hobby, index) => (
-                    <Text key={index} style={styles.badge}>
-                      {hobby}
-                    </Text>
-                  ))}
-                </View>
-              </View>
-            </>
-          )}
+          <View style={{ marginTop: 8 }}>
+            <Text
+              style={{ fontSize: 10, fontWeight: "bold", marginBottom: 4 }}>
+              Hobbies & Interests:
+            </Text>
+            <View style={styles.hobbiesContainer}>
+              {client.hobbies && client.hobbies.length > 0 ? (
+                client.hobbies.map((hobby, index) => (
+                  <Text key={index} style={styles.badge}>
+                    {hobby}
+                  </Text>
+                ))
+              ) : (
+                <Text style={{ fontSize: 10, color: "#b0bec5" }}>N/A</Text>
+              )}
+            </View>
+          </View>
         </View>
 
         <View style={styles.divider} />
@@ -358,57 +385,55 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
           <Text style={styles.sectionTitle}>Education & Career</Text>
           <View style={styles.twoColumnSection}>
             <View style={styles.column}>
-              {client.education && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Education:</Text>
-                  <Text style={styles.value}>{client.education}</Text>
-                </View>
-              )}
-              {client.collegeName && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>College:</Text>
-                  <Text style={styles.value}>
-                    {client.collegeName}{" "}
-                    {client.collegeYear ? `(${client.collegeYear})` : ""}
-                  </Text>
-                </View>
-              )}
-              {client.schoolName && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>School:</Text>
-                  <Text style={styles.value}>
-                    {client.schoolName}{" "}
-                    {client.schoolYear ? `(${client.schoolYear})` : ""}
-                  </Text>
-                </View>
-              )}
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Education:</Text>
+                <Text style={styles.value}>{client.education || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>College:</Text>
+                <Text style={styles.value}>
+                  {client.collegeName
+                    ? `${client.collegeName}${client.collegeYear ? ` (${client.collegeYear})` : ""}`
+                    : "N/A"}
+                </Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>School:</Text>
+                <Text style={styles.value}>
+                  {client.schoolName
+                    ? `${client.schoolName}${client.schoolYear ? ` (${client.schoolYear})` : ""}`
+                    : "N/A"}
+                </Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Other Degree:</Text>
+                <Text style={styles.value}>
+                  {client.otherDegree
+                    ? `${client.otherDegree}${client.otherOrg ? ` - ${client.otherOrg}` : ""}${client.otherYear ? ` (${client.otherYear})` : ""}`
+                    : "N/A"}
+                </Text>
+              </View>
             </View>
 
             <View style={styles.column}>
-              {client.employedIn && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Employed In:</Text>
-                  <Text style={styles.value}>{client.employedIn}</Text>
-                </View>
-              )}
-              {client.organization && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Organization:</Text>
-                  <Text style={styles.value}>{client.organization}</Text>
-                </View>
-              )}
-              {client.workingSince && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Working Since:</Text>
-                  <Text style={styles.value}>{client.workingSince}</Text>
-                </View>
-              )}
-              {client.annualIncome && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Annual Income:</Text>
-                  <Text style={styles.value}>{client.annualIncome}</Text>
-                </View>
-              )}
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Employed In:</Text>
+                <Text style={styles.value}>{client.employedIn || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Organization:</Text>
+                <Text style={styles.value}>{client.organization || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Working Since:</Text>
+                <Text style={styles.value}>
+                  {client.workingSince || "N/A"}
+                </Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Annual Income:</Text>
+                <Text style={styles.value}>{client.annualIncome || "N/A"}</Text>
+              </View>
             </View>
           </View>
         </View>
@@ -420,59 +445,85 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
           <Text style={styles.sectionTitle}>Family Details</Text>
           <View style={styles.twoColumnSection}>
             <View style={styles.column}>
-              {client.familyType && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Family Type:</Text>
-                  <Text style={styles.value}>{client.familyType}</Text>
-                </View>
-              )}
-              {client.fatherName && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>{`Father's Name:`}</Text>
-                  <Text style={styles.value}>{client.fatherName}</Text>
-                </View>
-              )}
-              {client.fatherOccupation && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>F{`ather's Occupation:`}</Text>
-                  <Text style={styles.value}>{client.fatherOccupation}</Text>
-                </View>
-              )}
-              {client.motherName && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>{`Mother's Name:`}</Text>
-                  <Text style={styles.value}>{client.motherName}</Text>
-                </View>
-              )}
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Family Type:</Text>
+                <Text style={styles.value}>{client.familyType || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>{`Father's Name:`}</Text>
+                <Text style={styles.value}>{client.fatherName || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>{`Father's Occupation:`}</Text>
+                <Text style={styles.value}>{client.fatherOccupation || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>{`Mother's Name:`}</Text>
+                <Text style={styles.value}>{client.motherName || "N/A"}</Text>
+              </View>
             </View>
 
             <View style={styles.column}>
-              {client.motherOccupation && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>{`Mother's Occupation:`}</Text>
-                  <Text style={styles.value}>{client.motherOccupation}</Text>
-                </View>
-              )}
-              {client.familyIncome && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Family Income:</Text>
-                  <Text style={styles.value}>{client.familyIncome}</Text>
-                </View>
-              )}
-              {client.numberOfCars !== null && client.numberOfCars > 0 && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Cars:</Text>
-                  <Text style={styles.value}>{client.numberOfCars}</Text>
-                </View>
-              )}
-              {client.numberOfBikes !== null && client.numberOfBikes > 0 && (
-                <View style={styles.infoRow}>
-                  <Text style={styles.label}>Bikes:</Text>
-                  <Text style={styles.value}>{client.numberOfBikes}</Text>
-                </View>
-              )}
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>{`Mother's Occupation:`}</Text>
+                <Text style={styles.value}>{client.motherOccupation || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Family Income:</Text>
+                <Text style={styles.value}>{client.familyIncome || "N/A"}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Cars:</Text>
+                <Text style={styles.value}>
+                  {client.numberOfCars !== null ? client.numberOfCars : "N/A"}
+                </Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.label}>Bikes:</Text>
+                <Text style={styles.value}>
+                  {client.numberOfBikes !== null ? client.numberOfBikes : "N/A"}
+                </Text>
+              </View>
             </View>
           </View>
+        </View>
+
+        <View style={styles.divider} />
+
+        {/* Siblings Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>
+            Siblings ({client.siblings?.length || 0})
+          </Text>
+          {client.siblings && client.siblings.length > 0 ? (
+            <View style={styles.siblingsGrid}>
+              {client.siblings.map((sibling, index) => (
+                <View key={index} style={[styles.siblingCard, styles.siblingItem]}>
+                  <Text style={styles.siblingName}>{sibling.name || "N/A"}</Text>
+                  <View style={styles.infoRow}>
+                    <Text style={styles.label}>Age:</Text>
+                    <Text style={styles.value}>{sibling.age} years</Text>
+                  </View>
+                  <View style={styles.infoRow}>
+                    <Text style={styles.label}>Gender:</Text>
+                    <Text style={styles.value}>{sibling.gender || "N/A"}</Text>
+                  </View>
+                  <View style={styles.infoRow}>
+                    <Text style={styles.label}>Profession:</Text>
+                    <Text style={styles.value}>{sibling.profession || "N/A"}</Text>
+                  </View>
+                  <View style={styles.infoRow}>
+                    <Text style={styles.label}>Marital Status:</Text>
+                    <Text style={styles.value}>
+                      {formatMaritalStatus(sibling.maritalStatus)}
+                    </Text>
+                  </View>
+                </View>
+              ))}
+            </View>
+          ) : (
+            <Text style={{ fontSize: 10, color: "#b0bec5" }}>No siblings</Text>
+          )}
         </View>
 
         <View style={styles.divider} />
@@ -480,28 +531,30 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
         {/* Contact Details */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Contact & Location</Text>
-          {client.city && (
-            <View style={styles.infoRow}>
-              <Text style={styles.label}>City:</Text>
-              <Text style={styles.value}>
-                {client.city}
-                {client.state ? `, ${client.state}` : ""}
-                {client.country ? `, ${client.country}` : ""}
-              </Text>
-            </View>
-          )}
-          {client.permanentAddress && (
-            <View style={styles.infoRow}>
-              <Text style={styles.label}>Permanent Address:</Text>
-              <Text style={styles.value}>{client.permanentAddress}</Text>
-            </View>
-          )}
-          {client.residentialAddress && (
-            <View style={styles.infoRow}>
-              <Text style={styles.label}>Residential Address:</Text>
-              <Text style={styles.value}>{client.residentialAddress}</Text>
-            </View>
-          )}
+          <View style={styles.infoRow}>
+            <Text style={styles.label}>City:</Text>
+            <Text style={styles.value}>
+              {client.city || "N/A"}
+              {client.state ? `, ${client.state}` : ""}
+              {client.country ? `, ${client.country}` : ""}
+            </Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.label}>State:</Text>
+            <Text style={styles.value}>{client.state || "N/A"}</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.label}>Country:</Text>
+            <Text style={styles.value}>{client.country || "N/A"}</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.label}>Permanent Address:</Text>
+            <Text style={styles.value}>{client.permanentAddress || "N/A"}</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.label}>Residential Address:</Text>
+            <Text style={styles.value}>{client.residentialAddress || "N/A"}</Text>
+          </View>
         </View>
 
         {/* Footer */}

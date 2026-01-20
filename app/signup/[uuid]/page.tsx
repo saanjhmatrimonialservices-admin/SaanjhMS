@@ -7,6 +7,7 @@ import {
   formDataAtom,
   isSubmittingAtom,
   profileFileAtom,
+  SiblingData,
 } from "@/app/store/signup";
 
 export default function SignupPage({ params }: { params: { uuid: string } }) {
@@ -47,6 +48,57 @@ export default function SignupPage({ params }: { params: { uuid: string } }) {
     if (e.target.files && e.target.files[0]) {
       setProfileFile(e.target.files[0]);
     }
+  };
+
+  const handleNumberOfSiblingsChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const count = Math.max(0, parseInt(e.target.value) || 0);
+    const currentSiblings = formData.siblings || [];
+
+    let newSiblings: SiblingData[];
+    if (count > currentSiblings.length) {
+      // Add new empty siblings
+      newSiblings = [
+        ...currentSiblings,
+        ...Array(count - currentSiblings.length)
+          .fill(null)
+          .map(() => ({
+            name: "",
+            age: "",
+            gender: "",
+            profession: "",
+            maritalStatus: "",
+          })),
+      ];
+    } else {
+      // Remove excess siblings
+      newSiblings = currentSiblings.slice(0, count);
+    }
+
+    setFormData((prev) => ({
+      ...prev,
+      numberOfSiblings: count.toString(),
+      siblings: newSiblings,
+    }));
+  };
+
+  const handleSiblingChange = (
+    index: number,
+    field: keyof SiblingData,
+    value: string
+  ) => {
+    setFormData((prev) => {
+      const newSiblings = [...prev.siblings];
+      newSiblings[index] = {
+        ...newSiblings[index],
+        [field]: value,
+      };
+      return {
+        ...prev,
+        siblings: newSiblings,
+      };
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -504,6 +556,82 @@ export default function SignupPage({ params }: { params: { uuid: string } }) {
                 onChange={handleInputChange}
                 className="w-full p-3 border rounded-lg text-blackshade"
               />
+            </div>
+
+            {/* Siblings */}
+            <div className="bg-gray-200 p-6 rounded-lg text-blackshade space-y-4">
+              <h2 className="text-xl font-semibold text-blackshade mb-4">
+                Siblings Details
+              </h2>
+              <input
+                type="number"
+                min="0"
+                placeholder="Number of Siblings"
+                value={formData.numberOfSiblings}
+                onChange={handleNumberOfSiblingsChange}
+                className="w-full p-3 border rounded-lg text-blackshade"
+              />
+
+              {formData.siblings.map((sibling, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-4 rounded-lg border border-gray-300 space-y-3">
+                  <h3 className="font-medium text-blackshade">
+                    Sibling {index + 1}
+                  </h3>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    value={sibling.name}
+                    onChange={(e) =>
+                      handleSiblingChange(index, "name", e.target.value)
+                    }
+                    className="w-full p-3 border rounded-lg text-blackshade"
+                  />
+                  <input
+                    type="number"
+                    placeholder="Age"
+                    value={sibling.age}
+                    onChange={(e) =>
+                      handleSiblingChange(index, "age", e.target.value)
+                    }
+                    className="w-full p-3 border rounded-lg text-blackshade"
+                  />
+                  <select
+                    value={sibling.gender}
+                    onChange={(e) =>
+                      handleSiblingChange(index, "gender", e.target.value)
+                    }
+                    className="w-full p-3 border rounded-lg text-blackshade">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="Profession"
+                    value={sibling.profession}
+                    onChange={(e) =>
+                      handleSiblingChange(index, "profession", e.target.value)
+                    }
+                    className="w-full p-3 border rounded-lg text-blackshade"
+                  />
+                  <select
+                    value={sibling.maritalStatus}
+                    onChange={(e) =>
+                      handleSiblingChange(index, "maritalStatus", e.target.value)
+                    }
+                    className="w-full p-3 border rounded-lg text-blackshade">
+                    <option value="">Select Marital Status</option>
+                    <option value="NeverMarried">Never Married</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="Widowed">Widowed</option>
+                    <option value="Separated">Separated</option>
+                    <option value="Married">Married</option>
+                  </select>
+                </div>
+              ))}
             </div>
 
             {/* Contact */}

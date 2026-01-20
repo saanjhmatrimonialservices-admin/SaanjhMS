@@ -2,13 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { Client } from "@prisma/client";
+import { Client, Sibling } from "@prisma/client";
 import ProfilePDFViewer from "@/app/components/profile-pdf/profile-viewer";
+
+type ClientWithSiblings = Client & {
+  siblings: Sibling[];
+};
 
 export default function ViewProfilePage() {
   const params = useParams();
   const clientId = params["client-id"] as string;
-  const [client, setClient] = useState<Client | null>(null);
+  const [client, setClient] = useState<ClientWithSiblings | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

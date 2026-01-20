@@ -32,14 +32,14 @@ model Client {
   rashi           String?
   height          String?
   weight          Int?
-  maritalStatus   MaritalStatus
+  maritalStatus   MaritalStatus?
   complexion      String?
-  diet            Diet
+  diet            Diet?
   drink           Boolean @default(false)
   smoke           Boolean @default(false)
   hobbies         String[] @default([])
 
-  religion        Religion
+  religion        Religion?
   motherTongue    String?
   caste           String?
   subCaste        String?
@@ -70,6 +70,17 @@ model Client {
   motherOccupation String?
   familyIncome    String?
 
+  //HomeDetails
+  homeType      String?
+  homeOwnership String? //make it an enum for owned/rented
+  homeAddress   String?
+  homeCity      String?
+  homeState     String?
+  homeCountry   String?
+
+  //SiblingDetails
+  siblings        Sibling[]
+
   // Contact
   permanentAddress  String?
   residentialAddress String?
@@ -80,6 +91,18 @@ model Client {
   // Other
   numberOfCars     Int?   @default(0)
   numberOfBikes    Int?   @default(0)
+}
+
+model Sibling {
+  id            String        @id @default(uuid())
+  clientId      String
+  client        Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  name          String
+  age           Int
+  gender        Gender
+  profession    String?
+  maritalStatus MaritalStatus?
 }
 
 enum UserRoles {

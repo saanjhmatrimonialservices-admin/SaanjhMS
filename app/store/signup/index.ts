@@ -1,6 +1,14 @@
 // atoms/signupAtoms.ts
 import { atom } from "jotai";
 
+export interface SiblingData {
+  name: string;
+  age: string;
+  gender: string;
+  profession: string;
+  maritalStatus: string;
+}
+
 export interface FormData {
   email: string;
   password: string;
@@ -50,6 +58,8 @@ export interface FormData {
   numberOfCars: string;
   numberOfBikes: string;
   profileImage: string; // new field
+  numberOfSiblings: string;
+  siblings: SiblingData[];
 }
 
 export const formDataAtom = atom<FormData>({
@@ -101,6 +111,8 @@ export const formDataAtom = atom<FormData>({
   numberOfCars: "0",
   numberOfBikes: "0",
   profileImage: "",
+  numberOfSiblings: "0",
+  siblings: [],
 });
 
 export const isSubmittingAtom = atom(false);
