@@ -1,8 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
 import { getUserFromCookie } from "@/lib/auth";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/app/lib/prisma";
 
 export async function GET(req: NextRequest) {
   try {
@@ -100,7 +99,7 @@ export async function GET(req: NextRequest) {
     console.error("Error fetching clients:", error);
     return NextResponse.json(
       { error: "Failed to fetch clients" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

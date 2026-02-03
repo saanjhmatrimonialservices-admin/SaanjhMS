@@ -33,13 +33,13 @@ interface ClientProfile {
   rashi: string | null;
   height: string | null;
   weight: number | null;
-  maritalStatus: string;
+  maritalStatus: string | null;
   complexion: string | null;
-  diet: string;
+  diet: string | null;
   drink: boolean;
   smoke: boolean;
   hobbies: string[];
-  religion: string;
+  religion: string | null;
   motherTongue: string | null;
   caste: string | null;
   subCaste: string | null;
@@ -252,6 +252,7 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
         <View style={styles.profileSection}>
           <View style={styles.imageContainer}>
             {client.imageUrl ? (
+              // eslint-disable-next-line jsx-a11y/alt-text
               <Image src={client.imageUrl} style={styles.profileImage} />
             ) : (
               <View style={{ padding: 40, textAlign: "center" }}>
@@ -276,7 +277,9 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Marital Status:</Text>
-                <Text style={styles.value}>{formatMaritalStatus(client.maritalStatus)}</Text>
+                <Text style={styles.value}>
+                  {formatMaritalStatus(client.maritalStatus)}
+                </Text>
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Religion:</Text>
@@ -360,8 +363,7 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
           </View>
 
           <View style={{ marginTop: 8 }}>
-            <Text
-              style={{ fontSize: 10, fontWeight: "bold", marginBottom: 4 }}>
+            <Text style={{ fontSize: 10, fontWeight: "bold", marginBottom: 4 }}>
               Hobbies & Interests:
             </Text>
             <View style={styles.hobbiesContainer}>
@@ -426,9 +428,7 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Working Since:</Text>
-                <Text style={styles.value}>
-                  {client.workingSince || "N/A"}
-                </Text>
+                <Text style={styles.value}>{client.workingSince || "N/A"}</Text>
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Annual Income:</Text>
@@ -455,7 +455,9 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>{`Father's Occupation:`}</Text>
-                <Text style={styles.value}>{client.fatherOccupation || "N/A"}</Text>
+                <Text style={styles.value}>
+                  {client.fatherOccupation || "N/A"}
+                </Text>
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>{`Mother's Name:`}</Text>
@@ -466,7 +468,9 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
             <View style={styles.column}>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>{`Mother's Occupation:`}</Text>
-                <Text style={styles.value}>{client.motherOccupation || "N/A"}</Text>
+                <Text style={styles.value}>
+                  {client.motherOccupation || "N/A"}
+                </Text>
               </View>
               <View style={styles.infoRow}>
                 <Text style={styles.label}>Family Income:</Text>
@@ -498,8 +502,12 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
           {client.siblings && client.siblings.length > 0 ? (
             <View style={styles.siblingsGrid}>
               {client.siblings.map((sibling, index) => (
-                <View key={index} style={[styles.siblingCard, styles.siblingItem]}>
-                  <Text style={styles.siblingName}>{sibling.name || "N/A"}</Text>
+                <View
+                  key={index}
+                  style={[styles.siblingCard, styles.siblingItem]}>
+                  <Text style={styles.siblingName}>
+                    {sibling.name || "N/A"}
+                  </Text>
                   <View style={styles.infoRow}>
                     <Text style={styles.label}>Age:</Text>
                     <Text style={styles.value}>{sibling.age} years</Text>
@@ -510,7 +518,9 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
                   </View>
                   <View style={styles.infoRow}>
                     <Text style={styles.label}>Profession:</Text>
-                    <Text style={styles.value}>{sibling.profession || "N/A"}</Text>
+                    <Text style={styles.value}>
+                      {sibling.profession || "N/A"}
+                    </Text>
                   </View>
                   <View style={styles.infoRow}>
                     <Text style={styles.label}>Marital Status:</Text>
@@ -553,7 +563,9 @@ const MaritalProfilePDF: React.FC<MaritalProfilePDFProps> = ({ client }) => {
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.label}>Residential Address:</Text>
-            <Text style={styles.value}>{client.residentialAddress || "N/A"}</Text>
+            <Text style={styles.value}>
+              {client.residentialAddress || "N/A"}
+            </Text>
           </View>
         </View>
 
