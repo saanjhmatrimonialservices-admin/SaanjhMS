@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     if (!firstName || !lastName || !email || !subject || !message) {
       return NextResponse.json(
         { success: false, error: "Missing required fields" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     console.error("Error sending email:", error);
     return NextResponse.json(
       { success: false, error: "Failed to send email" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
