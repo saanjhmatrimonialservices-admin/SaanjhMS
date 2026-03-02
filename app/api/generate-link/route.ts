@@ -3,7 +3,18 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function POST() {
+function getBaseUrl(req: Request): string {
+  // Use env var if explicitly set (e.g. for custom domains)
+  const envUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.NEXT_PUBLIC_SITE_URL;
+  if (envUrl) return envUrl.replace(/\/$/, ""); // strip trailing slash
+
+  // Derive from request (works for both localhost and hosted)
+  const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || "localhost:3000";
+  const proto = req.headers.get("x-forwarded-proto") || (host.includes("localhost") ? "http" : "https");
+  return `${proto}://${host}`;
+}
+
+export async function POST(req: Request) {
   try {
     // Create a new user with a temporary UUID
     const newUser = await prisma.user.create({
@@ -15,10 +26,9 @@ export async function POST() {
       },
     });
 
-    // Generate the signup link
-    const signupLink = `${
-      process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
-    }/signup/${newUser.id}`;
+    // Generate the signup link with dynamic base URL
+    const baseUrl = getBaseUrl(req);
+    const signupLink = `${baseUrl}/signup/${newUser.id}`;
 
     return NextResponse.json({
       success: true,

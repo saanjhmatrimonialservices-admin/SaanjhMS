@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useSetAtom } from "jotai";
 import { loggedInUserAtom } from "@/app/store/user";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginForm() {
   const setLoggedInUser = useSetAtom(loggedInUserAtom);
@@ -143,6 +144,11 @@ export default function LoginForm() {
         {passwordError && (
           <p className="text-sm text-red-600 mt-1">{passwordError}</p>
         )}
+        <div className="text-right mt-1">
+          <Link href="/forgot-password" className="text-sm text-blue-600 hover:underline">
+            Forgot Password?
+          </Link>
+        </div>
       </div>
 
       {/* Submit Button */}
