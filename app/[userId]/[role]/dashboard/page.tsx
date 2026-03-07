@@ -203,6 +203,21 @@ export default function Dashboard(): React.ReactElement {
         </div>
       ),
     },
+    {
+      key: "actions",
+      header: "Actions",
+      sortable: false,
+      render: (row) => (
+        <a
+          href={`/view-profile/${row.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-primary hover:text-red-800 transition-colors whitespace-nowrap">
+          <Link size={16} />
+          View
+        </a>
+      ),
+    },
   ];
 
   return (
