@@ -9,6 +9,7 @@ import {
   FaGlobe,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import AboutFounder from "../components/about/about-founder";
 
 export default function About() {
   const values = [
@@ -212,6 +213,9 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      {/* About Founder */}
+      <AboutFounder />
 
       {/* Call to Action */}
       <div className="w-screen min-h-[60vh] overflow-hidden bg-whiteshade flex flex-col px-8 md:px-60 py-20 items-center gap-20">
