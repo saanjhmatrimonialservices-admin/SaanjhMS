@@ -6,9 +6,9 @@ import ProfileImage from "@/app/profile.webp";
 
 export default function AboutFounder() {
   return (
-    <div className="w-full bg-white py-20 px-8 md:px-20">
+    <div className="w-full bg-white py-12 md:py-20 px-4 sm:px-8 md:px-20">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-center text-3xl md:text-4xl font-bold mb-16 text-blackshade">
+        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-10 md:mb-16 text-blackshade">
           Meet Our Founder
         </h2>
         <motion.div
@@ -29,7 +29,7 @@ export default function AboutFounder() {
             </div>
             <div className="text-center">
               <h3
-                className={`${serif.className} text-3xl md:text-4xl font-semibold text-primary`}>
+                className={`${serif.className} text-2xl sm:text-3xl md:text-4xl font-semibold text-primary`}>
                 Abhimanyu Tuteja
               </h3>
               <p className="text-greyshade text-lg mt-1">Founder, Saanjh</p>

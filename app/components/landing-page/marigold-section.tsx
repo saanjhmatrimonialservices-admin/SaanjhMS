@@ -2,9 +2,9 @@ import MarigoldImage from "../../../public/Marigold.png";
 import Image from "next/image";
 export default function MarigoldSection(): React.ReactElement {
   return (
-    <div className="w-screen min-h-screen relative overflow-hidden bg-whiteshade">
-      <div className="w-full h-screen sticky flex flex-col items-center  px-8 md:px-60 py-20  ">
-        <div className="text-3xl md:text-4xl font-bold text-blackshade ">
+    <div className="w-full min-h-screen relative overflow-hidden bg-whiteshade">
+      <div className="w-full min-h-screen relative flex flex-col items-center px-4 sm:px-8 md:px-20 lg:px-60 py-12 md:py-20">
+        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blackshade text-center">
           A Celebration of Love and Tradition
         </div>
         <div className="flex flex-col items-center gap-8 h-full w-full justify-center text-justify">
@@ -38,14 +38,14 @@ export default function MarigoldSection(): React.ReactElement {
           alt="phool"
           width={400}
           height={400}
-          className="top-1/2 absolute left-0 -translate-y-1/2 -translate-x-1/2"
+          className="top-1/2 absolute left-0 -translate-y-1/2 -translate-x-1/2 hidden md:block"
         />
         <Image
           src={MarigoldImage}
           alt="phool"
           width={400}
           height={400}
-          className="top-1/2 absolute right-0 -translate-y-1/2 translate-x-1/2"
+          className="top-1/2 absolute right-0 -translate-y-1/2 translate-x-1/2 hidden md:block"
         />
       </div>
       <div className="absolute"></div>

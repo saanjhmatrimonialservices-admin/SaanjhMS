@@ -61,8 +61,8 @@ export default function WhyUs(): React.ReactElement {
   };
 
   return (
-    <div className="w-full bg-[#f9f9f9] py-16 px-6 md:px-20 text-black">
-      <h2 className="text-center text-3xl md:text-4xl font-bold mb-12">
+    <div className="w-full bg-[#f9f9f9] py-12 md:py-16 px-4 sm:px-6 md:px-20 text-black">
+      <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-12">
         Why choose Saanjh?
       </h2>
 
@@ -75,7 +75,7 @@ export default function WhyUs(): React.ReactElement {
         {features.map(({ title, description, icon: Icon }, index) => (
           <motion.div
             key={index}
-            className="bg-white rounded-2xl shadow-md p-6 w-72 text-center hover:shadow-xl transition-shadow duration-300"
+            className="bg-white rounded-2xl shadow-md p-6 w-full max-w-sm text-center hover:shadow-xl transition-shadow duration-300"
             variants={cardVariants}>
             <div className="mx-auto w-16 h-16 mb-4 bg-red-100 text-primary flex items-center justify-center rounded-full">
               <Icon className="text-2xl" />
