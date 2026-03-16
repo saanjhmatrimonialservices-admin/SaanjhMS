@@ -1,5 +1,11 @@
 "use client";
-import { FaUsers, FaHandshake, FaLock } from "react-icons/fa";
+import {
+  FaUsers,
+  FaHandshake,
+  FaLock,
+  FaHeart,
+  FaShieldAlt,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 
 export default function WhyUs(): React.ReactElement {
@@ -7,18 +13,31 @@ export default function WhyUs(): React.ReactElement {
     {
       title: "Trusted by Families",
       description:
-        "Connect with profiles that share your cultural and familial values.",
+        "Families across communities trust Saanjh to connect them with profiles that share their values, traditions, and expectations.",
       icon: FaUsers,
     },
     {
       title: "Cultural Compatibility",
       description:
-        "Filter by community, traditions, and preferences for a meaningful match.",
+        "We deeply understand Indian family dynamics and help you find a partner who aligns with your cultural traditions and preferences.",
       icon: FaHandshake,
     },
     {
+      title: "Personal Touch",
+      description:
+        "Unlike other platforms, we provide personalized guidance and support throughout your journey to finding love.",
+      icon: FaHeart,
+    },
+    {
+      title: "Verified Profiles",
+      description:
+        "Every profile goes through our comprehensive verification process to ensure authenticity and safety.",
+      icon: FaShieldAlt,
+    },
+    {
       title: "Secure & Private",
-      description: "Advanced security ensures your data is protected.",
+      description:
+        "Your personal information is protected with advanced security measures, giving you complete peace of mind.",
       icon: FaLock,
     },
   ];
@@ -48,7 +67,7 @@ export default function WhyUs(): React.ReactElement {
       </h2>
 
       <motion.div
-        className="flex flex-col md:flex-row gap-8 justify-center items-center"
+        className="flex flex-wrap gap-8 justify-center items-stretch max-w-6xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
@@ -58,7 +77,7 @@ export default function WhyUs(): React.ReactElement {
             key={index}
             className="bg-white rounded-2xl shadow-md p-6 w-72 text-center hover:shadow-xl transition-shadow duration-300"
             variants={cardVariants}>
-            <div className="mx-auto w-16 h-16 mb-4 bg-red-100 text-red-600 flex items-center justify-center rounded-full">
+            <div className="mx-auto w-16 h-16 mb-4 bg-red-100 text-primary flex items-center justify-center rounded-full">
               <Icon className="text-2xl" />
             </div>
             <h3 className="text-lg font-semibold text-blackshade mb-2">

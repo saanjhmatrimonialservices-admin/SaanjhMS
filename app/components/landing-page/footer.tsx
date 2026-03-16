@@ -12,8 +12,9 @@ export default function Footer(): React.ReactElement {
       }`}>
       <div className="flex flex-row gap-6 mx-auto justify-between">
         <p className="text-xl italic w-1/3">
-          We’re Here to Help Have questions? Our team is ready to assist you in
-          your journey to find love.
+          We’re here to help. If you have questions about registration, profile
+          verification, or finding the right match, reach out and we’ll guide
+          you.
         </p>
 
         <div className="text-base leading-relaxed">
@@ -27,7 +28,7 @@ export default function Footer(): React.ReactElement {
           </p>
           <p>
             Phone:{" "}
-            <a href="tel:+1234567890" className="underline">
+            <a href="tel:+919810098096" className="underline">
               +91 9810098096
             </a>
           </p>

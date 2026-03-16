@@ -9,7 +9,6 @@ import {
   FaGlobe,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
-import AboutFounder from "../components/about/about-founder";
 
 export default function About() {
   const values = [
@@ -169,53 +168,30 @@ export default function About() {
         </motion.div>
       </div>
 
-      {/* Why We're Different Section */}
-      <div className="w-full bg-primary py-16 px-6 md:px-20 h-full md:h-[60vh] 2xl:h-[50vh] flex items-center justify-center">
-        <div className="max-w-6xl mx-auto text-center">
+      {/* About Us Section */}
+      <div className="w-full bg-primary py-16 px-6 md:px-20 flex items-center justify-center">
+        <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white">
-            {`            Why We're Different
-`}{" "}
+            About Us
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-white">
-            <div className="text-lg md:text-xl">
-              <h3 className="font-semibold mb-4 text-xl">
-                Cultural Understanding
-              </h3>
-              <p className="text-gray-200 text-base">
-                We deeply understand Indian family dynamics, cultural
-                expectations, and the importance of community in marriage
-                decisions.
-              </p>
-            </div>
-            <div className="text-lg md:text-xl">
-              <h3 className="font-semibold mb-4 text-xl">Personal Touch</h3>
-              <p className="text-gray-200 text-base">
-                Unlike other platforms, we provide personalized guidance and
-                support throughout your journey to finding love.
-              </p>
-            </div>
-            <div className="text-lg md:text-xl">
-              <h3 className="font-semibold mb-4 text-xl">Verified Profiles</h3>
-              <p className="text-gray-200 text-base">
-                Every profile goes through our comprehensive verification
-                process to ensure authenticity and safety.
-              </p>
-            </div>
-            <div className="text-lg md:text-xl">
-              <h3 className="font-semibold mb-4 text-xl">
-                Family-Centric Approach
-              </h3>
-              <p className="text-gray-200 text-base">
-                We recognize that marriage involves families, and we facilitate
-                connections that bring families together.
-              </p>
-            </div>
+          <div className="flex flex-col gap-8">
+            <p className="text-base md:text-lg 2xl:text-xl text-gray-200 text-justify">
+              At <span className="text-secondary font-semibold">Saanjh</span>,
+              we believe marriage is a sacred bond rooted in love, family, and
+              shared values. Our platform is designed to help you find a partner
+              who respects your traditions and dreams.
+            </p>
+            <p className="text-base md:text-lg 2xl:text-xl text-gray-200 text-justify">
+              <span className="text-secondary font-semibold">Saanjh</span> was
+              created to celebrate the beauty of Indian marriages. We understand
+              the importance of finding a partner who aligns with your values,
+              whether {`it's`} through shared traditions, family expectations, or
+              compatibility. Our mission is to make your journey to love simple,
+              secure, and meaningful.
+            </p>
           </div>
         </div>
       </div>
-
-      {/* About Founder */}
-      <AboutFounder />
 
       {/* Call to Action */}
       <div className="w-screen min-h-[60vh] overflow-hidden bg-whiteshade flex flex-col px-8 md:px-60 py-20 items-center gap-20">

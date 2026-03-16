@@ -3,7 +3,7 @@ import BackgroundImage from "../public/Background_Saanjh_Compressed.webp";
 import { serif, cursive } from "./fonts";
 import WhyUs from "./components/landing-page/why-us";
 import MarigoldSection from "./components/landing-page/marigold-section";
-import AboutUs from "./components/landing-page/about";
+import AboutFounder from "./components/about/about-founder";
 
 export default function Home() {
   return (
@@ -46,7 +46,7 @@ export default function Home() {
       </div>
       <WhyUs />
       <MarigoldSection />
-      <AboutUs />
+      <AboutFounder />
     </div>
   );
 }
