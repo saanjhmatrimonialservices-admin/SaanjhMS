@@ -113,19 +113,18 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen w-screen bg-whiteshade">
+    <div className="min-h-screen w-full overflow-x-hidden bg-whiteshade">
       {/* Hero Section */}
-      <div className="w-full h-screen relative bg-gradient-to-r to-amber-600 from-secondary">
+      <div className="w-full min-h-[70vh] md:h-screen relative bg-gradient-to-r to-amber-600 from-secondary">
         <div className="absolute w-full h-full flex justify-center items-center">
-          <div className="md:h-full md:w-full h-1/2 w-full flex flex-col items-center justify-center gap-8 p-12">
+          <div className="md:h-full md:w-full h-1/2 w-full flex flex-col items-center justify-center gap-6 p-6 md:p-12">
             <div className="flex flex-col items-center justify-center">
               <div
-                className={`${serif.className} text-6xl md:text-8xl font-semibold text-primary`}>
+                className={`${serif.className} text-4xl sm:text-5xl md:text-8xl font-semibold text-primary text-center`}>
                 Contact Us
               </div>
-              <div className="text-xl md:text-2xl text-primary">
-                {`                We're Here to Help
-`}{" "}
+              <div className="text-base sm:text-lg md:text-2xl text-primary text-center">
+                We're Here to Help
               </div>
             </div>
             {/* <div className="text-lg text-blackshade text-center">
@@ -138,9 +137,9 @@ export default function Contact() {
       </div>
 
       {/* Contact Information Section */}
-      <div className="w-full bg-[#f9f9f9] py-16 px-6 md:px-20">
+      <div className="w-full bg-[#f9f9f9] py-12 md:py-16 px-4 sm:px-6 md:px-20">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-center text-3xl md:text-4xl font-bold mb-12 text-blackshade">
+          <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-blackshade">
             Get in Touch
           </h2>
 
@@ -162,7 +161,9 @@ export default function Contact() {
                   <h3 className="text-lg font-semibold text-blackshade mb-3">
                     {title}
                   </h3>
-                  <p className="text-primary font-semibold mb-2">{details}</p>
+                  <p className="text-primary font-semibold mb-2 break-all">
+                    {details}
+                  </p>
                   <p className="text-sm text-gray-600">{description}</p>
                 </motion.div>
               ),
@@ -172,8 +173,8 @@ export default function Contact() {
       </div>
 
       {/* Contact Form Section */}
-      <div className="w-screen min-h-[80vh] overflow-hidden bg-white flex flex-col px-8 md:px-60 py-20 items-center gap-20">
-        <div className="text-3xl md:text-4xl font-bold text-blackshade text-center">
+      <div className="w-full min-h-[80vh] overflow-hidden bg-white flex flex-col px-4 sm:px-8 md:px-20 lg:px-40 py-12 md:py-20 items-center gap-12 md:gap-20">
+        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blackshade text-center">
           Send Us a Message
         </div>
 
@@ -296,7 +297,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-800 transition-colors inline-flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed">
+                className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-800 transition-colors inline-flex justify-center items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed w-full sm:w-auto">
                 {loading ? (
                   "Sending..."
                 ) : (

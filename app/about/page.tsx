@@ -69,17 +69,17 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen w-screen bg-whiteshade">
+    <div className="min-h-screen w-full overflow-x-hidden bg-whiteshade">
       {/* Hero Section */}
-      <div className="w-full h-screen relative bg-gradient-to-r to-amber-600 from-secondary">
+      <div className="w-full min-h-[70vh] md:h-screen relative bg-gradient-to-r to-amber-600 from-secondary">
         <div className="absolute w-full h-full flex justify-center items-center">
-          <div className="md:h-full md:w-full h-1/2 w-full flex flex-col items-center justify-center gap-8 p-12">
+          <div className="md:h-full md:w-full h-1/2 w-full flex flex-col items-center justify-center gap-6 p-6 md:p-12">
             <div className="flex flex-col items-center justify-center">
               <div
-                className={`${serif.className} text-6xl md:text-8xl font-semibold text-primary`}>
+                className={`${serif.className} text-4xl sm:text-5xl md:text-8xl font-semibold text-primary text-center`}>
                 About Saanjh
               </div>
-              <div className="text-xl md:text-2xl text-primary">
+              <div className="text-base sm:text-lg md:text-2xl text-primary text-center">
                 Our Story, Mission & Values
               </div>
             </div>
@@ -93,8 +93,8 @@ export default function About() {
       </div>
 
       {/* Our Story Section */}
-      <div className="w-screen min-h-[80vh] overflow-hidden bg-white flex flex-col px-8 md:px-60 py-20 items-center gap-20">
-        <div className="text-3xl md:text-4xl font-bold text-blackshade text-center">
+      <div className="w-full min-h-[80vh] overflow-hidden bg-white flex flex-col px-4 sm:px-8 md:px-20 lg:px-40 py-12 md:py-20 items-center gap-12 md:gap-20">
+        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blackshade text-center">
           Our Story
         </div>
         <div className="flex flex-col gap-8 max-w-4xl">
@@ -123,12 +123,12 @@ export default function About() {
       </div>
 
       {/* Mission Section */}
-      <div className="w-full bg-[#f9f9f9] py-16 px-6 md:px-20">
+      <div className="w-full bg-[#f9f9f9] py-12 md:py-16 px-4 sm:px-6 md:px-20">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-center text-3xl md:text-4xl font-bold mb-12 text-blackshade">
+          <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-blackshade">
             Our Mission
           </h2>
-          <div className="text-center text-lg md:text-xl text-blackshade max-w-4xl mx-auto">
+          <div className="text-center text-base sm:text-lg md:text-xl text-blackshade max-w-4xl mx-auto">
             To create meaningful connections that honor tradition, celebrate
             love, and build families that stand the test of time. We believe
             that every person deserves to find a partner who not only loves them
@@ -138,8 +138,8 @@ export default function About() {
       </div>
 
       {/* Values Section */}
-      <div className="w-screen min-h-[80vh] overflow-hidden bg-white flex flex-col px-8 md:px-60 py-20 items-center gap-20">
-        <div className="text-3xl md:text-4xl font-bold text-blackshade text-center">
+      <div className="w-full min-h-[80vh] overflow-hidden bg-white flex flex-col px-4 sm:px-8 md:px-20 lg:px-40 py-12 md:py-20 items-center gap-12 md:gap-20">
+        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blackshade text-center">
           Our Values
         </div>
 
@@ -169,9 +169,9 @@ export default function About() {
       </div>
 
       {/* About Us Section */}
-      <div className="w-full bg-primary py-16 px-6 md:px-20 flex items-center justify-center">
+      <div className="w-full bg-primary py-12 md:py-16 px-4 sm:px-6 md:px-20 flex items-center justify-center">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-white">
             About Us
           </h2>
           <div className="flex flex-col gap-8">
@@ -194,19 +194,19 @@ export default function About() {
       </div>
 
       {/* Call to Action */}
-      <div className="w-screen min-h-[60vh] overflow-hidden bg-whiteshade flex flex-col px-8 md:px-60 py-20 items-center gap-20">
-        <div className="text-3xl md:text-4xl font-bold text-blackshade text-center">
+      <div className="w-full min-h-[60vh] overflow-hidden bg-whiteshade flex flex-col px-4 sm:px-8 md:px-20 lg:px-40 py-12 md:py-20 items-center gap-12 md:gap-20">
+        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blackshade text-center">
           Ready to Begin Your Journey?
         </div>
-        <div className="text-center text-lg md:text-xl text-blackshade max-w-4xl">
+        <div className="text-center text-base sm:text-lg md:text-xl text-blackshade max-w-4xl">
           Join thousands of families who have found their perfect matches
           through Saanjh. Your story of love and happiness starts here.
         </div>
-        <div className="flex flex-col md:flex-row gap-4">
-          <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-800 transition-colors">
+        <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+          <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-800 transition-colors w-full md:w-auto">
             Start Your Journey
           </button>
-          <button className="border-2 border-primary text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white transition-colors">
+          <button className="border-2 border-primary text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white transition-colors w-full md:w-auto">
             Learn More
           </button>
         </div>

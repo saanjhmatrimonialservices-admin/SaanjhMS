@@ -7,22 +7,22 @@ export default function Footer(): React.ReactElement {
 
   return (
     <footer
-      className={`bg-primary text-whiteshade flex flex-col justify-between px-6 py-8 h-[100vh] md:h-[40vh] ${
+      className={`bg-primary text-whiteshade flex flex-col justify-between px-4 sm:px-6 py-8 h-auto md:h-[40vh] ${
         hideFooter ? "hidden" : ""
       }`}>
-      <div className="flex flex-row gap-6 mx-auto justify-between">
-        <p className="text-xl italic w-1/3">
+      <div className="flex flex-col md:flex-row gap-6 mx-auto justify-between w-full max-w-6xl">
+        <p className="text-base sm:text-lg md:text-xl italic w-full md:w-1/2">
           We’re here to help. If you have questions about registration, profile
           verification, or finding the right match, reach out and we’ll guide
           you.
         </p>
 
-        <div className="text-base leading-relaxed">
+        <div className="text-sm sm:text-base leading-relaxed w-full md:w-1/2 break-words">
           <p>
             Email:{" "}
             <a
               href="mailto:saanjhmatrimonialservices@gmail.com"
-              className="underline">
+              className="underline break-all">
               saanjhmatrimonialservices@gmail.com
             </a>
           </p>
