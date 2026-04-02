@@ -1,11 +1,5 @@
 "use client";
-import {
-  FaUsers,
-  FaHandshake,
-  FaLock,
-  FaHeart,
-  FaShieldAlt,
-} from "react-icons/fa";
+import { FaUsers, FaHandshake, FaHeart, FaShieldAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 export default function WhyUs(): React.ReactElement {
@@ -33,12 +27,6 @@ export default function WhyUs(): React.ReactElement {
       description:
         "Every profile goes through our comprehensive verification process to ensure authenticity and safety.",
       icon: FaShieldAlt,
-    },
-    {
-      title: "Secure & Private",
-      description:
-        "Your personal information is protected with advanced security measures, giving you complete peace of mind.",
-      icon: FaLock,
     },
   ];
 
