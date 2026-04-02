@@ -2,8 +2,8 @@ import MarigoldImage from "../../../public/Marigold.png";
 import Image from "next/image";
 export default function MarigoldSection(): React.ReactElement {
   return (
-    <div className="w-full min-h-screen relative overflow-hidden bg-whiteshade">
-      <div className="w-full min-h-screen relative flex flex-col items-center px-4 sm:px-8 md:px-20 lg:px-60 py-12 md:py-20">
+    <div className="w-full min-h-screen md:min-h-[50vh] relative overflow-hidden bg-whiteshade">
+      <div className="w-full min-h-screen md:min-h-[50vh] relative flex flex-col items-center gap-12 px-4 sm:px-8 md:px-20 lg:px-60 py-12 md:py-20">
         <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blackshade text-center">
           A Celebration of Love and Tradition
         </div>
