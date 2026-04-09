@@ -23,7 +23,7 @@ export default function SignupForm({ uuid }: SignupFormProps) {
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     const { name, value, type } = e.target;
     setFormData((prev) => ({
@@ -32,19 +32,19 @@ export default function SignupForm({ uuid }: SignupFormProps) {
         type === "checkbox"
           ? (e.target as HTMLInputElement).checked
           : type === "number" ||
-            [
-              "weight",
-              "collegeYear",
-              "schoolYear",
-              "otherYear",
-              "workingSince",
-              "numberOfCars",
-              "numberOfBikes",
-            ].includes(name)
-          ? value === ""
-            ? ""
-            : Number(value)
-          : value,
+              [
+                "weight",
+                "collegeYear",
+                "schoolYear",
+                "otherYear",
+                "workingSince",
+                "numberOfCars",
+                "numberOfBikes",
+              ].includes(name)
+            ? value === ""
+              ? ""
+              : Number(value)
+            : value,
     }));
   };
 
@@ -55,7 +55,7 @@ export default function SignupForm({ uuid }: SignupFormProps) {
   };
 
   const handleNumberOfSiblingsChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const count = Math.max(0, parseInt(e.target.value) || 0);
     const currentSiblings = formData.siblings || [];
@@ -90,7 +90,7 @@ export default function SignupForm({ uuid }: SignupFormProps) {
   const handleSiblingChange = (
     index: number,
     field: keyof SiblingData,
-    value: string
+    value: string,
   ) => {
     setFormData((prev) => {
       const newSiblings = [...prev.siblings];
@@ -171,7 +171,7 @@ export default function SignupForm({ uuid }: SignupFormProps) {
             <h1 className="text-3xl font-bold text-primary mb-2">
               Complete Your Profile
             </h1>
-            <p className="text-gray-200">
+            <p className="text-gray-700">
               Fill in your details to create your matrimony profile
             </p>
           </div>
@@ -226,13 +226,18 @@ export default function SignupForm({ uuid }: SignupFormProps) {
               <h2 className="text-xl font-semibold text-blackshade mb-4">
                 Personal Details
               </h2>
-              <input
-                type="date"
-                name="dateOfBirth"
-                value={formData.dateOfBirth}
-                onChange={handleInputChange}
-                className="w-full p-3 border rounded-lg text-blackshade"
-              />
+              <label className="flex flex-col gap-1">
+                <span className="text-sm font-medium text-blackshade">
+                  Date of Birth
+                </span>
+                <input
+                  type="date"
+                  name="dateOfBirth"
+                  value={formData.dateOfBirth}
+                  onChange={handleInputChange}
+                  className="w-full p-3 border rounded-lg text-blackshade"
+                />
+              </label>
               <select
                 name="gender"
                 value={formData.gender}
@@ -243,13 +248,18 @@ export default function SignupForm({ uuid }: SignupFormProps) {
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
               </select>
-              <input
-                type="time"
-                name="timeOfBirth"
-                value={formData.timeOfBirth}
-                onChange={handleInputChange}
-                className="w-full p-3 border rounded-lg text-blackshade"
-              />
+              <label className="flex flex-col gap-1">
+                <span className="text-sm font-medium text-blackshade">
+                  Time of Birth
+                </span>
+                <input
+                  type="time"
+                  name="timeOfBirth"
+                  value={formData.timeOfBirth}
+                  onChange={handleInputChange}
+                  className="w-full p-3 border rounded-lg text-blackshade"
+                />
+              </label>
               <input
                 type="text"
                 name="placeOfBirth"
@@ -567,14 +577,19 @@ export default function SignupForm({ uuid }: SignupFormProps) {
               <h2 className="text-xl font-semibold text-blackshade mb-4">
                 Siblings Details
               </h2>
-              <input
-                type="number"
-                min="0"
-                placeholder="Number of Siblings"
-                value={formData.numberOfSiblings}
-                onChange={handleNumberOfSiblingsChange}
-                className="w-full p-3 border rounded-lg text-blackshade"
-              />
+              <label className="flex flex-col gap-1">
+                <span className="text-sm font-medium text-blackshade">
+                  Number of Siblings
+                </span>
+                <input
+                  type="number"
+                  min="0"
+                  placeholder="0"
+                  value={formData.numberOfSiblings}
+                  onChange={handleNumberOfSiblingsChange}
+                  className="w-full p-3 border rounded-lg text-blackshade"
+                />
+              </label>
 
               {formData.siblings.map((sibling, index) => (
                 <div
@@ -624,7 +639,11 @@ export default function SignupForm({ uuid }: SignupFormProps) {
                   <select
                     value={sibling.maritalStatus}
                     onChange={(e) =>
-                      handleSiblingChange(index, "maritalStatus", e.target.value)
+                      handleSiblingChange(
+                        index,
+                        "maritalStatus",
+                        e.target.value,
+                      )
                     }
                     className="w-full p-3 border rounded-lg text-blackshade">
                     <option value="">Select Marital Status</option>
@@ -690,22 +709,34 @@ export default function SignupForm({ uuid }: SignupFormProps) {
               <h2 className="text-xl font-semibold text-blackshade mb-4">
                 Other
               </h2>
-              <input
-                type="number"
-                name="numberOfCars"
-                placeholder="Number of Cars"
-                value={formData.numberOfCars}
-                onChange={handleInputChange}
-                className="w-full p-3 border rounded-lg text-blackshade"
-              />
-              <input
-                type="number"
-                name="numberOfBikes"
-                placeholder="Number of Bikes"
-                value={formData.numberOfBikes}
-                onChange={handleInputChange}
-                className="w-full p-3 border rounded-lg text-blackshade"
-              />
+              <label className="flex flex-col gap-1">
+                <span className="text-sm font-medium text-blackshade">
+                  Number of Cars
+                </span>
+                <input
+                  type="number"
+                  name="numberOfCars"
+                  min="0"
+                  placeholder="0"
+                  value={formData.numberOfCars}
+                  onChange={handleInputChange}
+                  className="w-full p-3 border rounded-lg text-blackshade"
+                />
+              </label>
+              <label className="flex flex-col gap-1">
+                <span className="text-sm font-medium text-blackshade">
+                  Number of Bikes
+                </span>
+                <input
+                  type="number"
+                  name="numberOfBikes"
+                  min="0"
+                  placeholder="0"
+                  value={formData.numberOfBikes}
+                  onChange={handleInputChange}
+                  className="w-full p-3 border rounded-lg text-blackshade"
+                />
+              </label>
             </div>
 
             {/* Submit */}
